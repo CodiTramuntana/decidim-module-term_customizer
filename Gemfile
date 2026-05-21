@@ -25,6 +25,11 @@ gem "puma", ">= 5.6.2"
 
 gem "faker", "~> 3.2"
 
+# Pin rexml to < 3.4 because simplecov-cobertura 2.1.0 generates XML that
+# rexml >= 3.4 rejects when parsing it back (causes "Malformed XML: No root
+# element" after the test suite finishes, breaking CI even when all tests pass).
+gem "rexml", "< 3.4"
+
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
   gem "dalli", "~> 2.7", ">= 2.7.10" # For testing MemCacheStore
